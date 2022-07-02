@@ -38,7 +38,7 @@ command to run if program contains helper info
 Contributors names and contact info
 
 Tyler Moody
-ex. [@TylerPMoody](https://twitter.com/TylerPMoody)
+[@TylerPMoody](https://twitter.com/TylerPMoody)
 
 Mason Strawn
 
