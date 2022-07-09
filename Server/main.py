@@ -24,8 +24,16 @@ clientSocket, address = socketserver.accept()
 # While the connection is good, send inputs to client.
 def main():
     
+    # Get user input for testing.
+    userInput = input("Enter your value: ")
+
     # Convert input to binary and send to client.
-    clientSocket.send(bin(int().encode(4)))
+    clientSocket.send(bin(int(userInput)).encode())
+
+    # Shutdown if value is 0.
+    if userInput == '0' :
+        clientSocket.close()
+        exit()
 
     # Delay to not overwhelm the client.
     time.sleep(1)
