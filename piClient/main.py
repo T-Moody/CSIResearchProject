@@ -33,7 +33,7 @@ def main():
         duty = (int(s.recv(1024).decode(), 0))
         print("Duty: " + str(duty))
         
-        # Shutdown if 0 is recieve from server.
+        # Shutdown if 0 is receive from server.
         if duty == 0 :
             servo1.stop()
             GPIO.cleanup()
