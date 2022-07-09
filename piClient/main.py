@@ -16,6 +16,7 @@ s = socket.socket()
 # connect to the server on local computer
 s.connect((HOST, PORT))
 GPIO.setwarnings(False)
+
 #set GPIO numbering mode
 GPIO.setmode(GPIO.BOARD)
 
