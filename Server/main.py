@@ -2,11 +2,19 @@
 import socket
 import time
 from threading import Thread
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+# Get IP and PORT from env.
+PORT= int(os.getenv('PORT'))
+HOST = os.getenv('HOST')
 
 # Start server
 socketserver = socket.socket()
-host = ''
-port = 8000
+host = HOST
+port = PORT
 socketserver.bind((host, port))
 socketserver.listen(5)
 
@@ -17,11 +25,10 @@ clientSocket, address = socketserver.accept()
 def main():
     
     # Convert input to binary and send to client.
-    clientSocket.send(bin(int().encode())
-    clientSocket.send(bin(int().encode())
+    clientSocket.send(bin(int().encode(4)))
 
     # Delay to not overwhelm the client.
-    time.sleep(.1)
+    time.sleep(1)
 
 if __name__ == '__main__':
     while True:
