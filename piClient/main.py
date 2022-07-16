@@ -13,14 +13,14 @@ HOST = os.getenv('HOST')
 # Create a socket object
 s = socket.socket()
 
-# connect to the server on local computer
+# Connect to the server on local computer
 s.connect((HOST, PORT))
 
 # Create motor object pass in pin number
 motor = Motor(11)
 
 def main():
-    # receive data from the server and decoding to get the int value.
+    # Receive data from the server and decoding to get the int value.
     try:
         duty = (int(s.recv(1024).decode(), 0))
         print("Duty: " + str(duty))
