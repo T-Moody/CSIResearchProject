@@ -1,8 +1,8 @@
-import RPi.GPIO as GPIO
 import time
 import socket
 from dotenv import load_dotenv
 import os
+from motor import Motor
 
 load_dotenv()
 
@@ -15,17 +15,9 @@ s = socket.socket()
 
 # connect to the server on local computer
 s.connect((HOST, PORT))
-GPIO.setwarnings(False)
 
-#set GPIO numbering mode
-GPIO.setmode(GPIO.BOARD)
-
-#set pin 11 as output, set servo1 as pin 11 as PWM
-GPIO.setup(11,GPIO.OUT)
-servo1 = GPIO.PWM(11,50)
-
-#start PWM running, but with value of 0 (off)
-servo1.start(0)
+# Create motor object pass in pin number
+motor = Motor(11)
 
 def main():
     # receive data from the server and decoding to get the int value.
@@ -35,13 +27,13 @@ def main():
         
         # Shutdown if 0 is received from server.
         if duty == 0 :
-            servo1.stop()
-            GPIO.cleanup()
+            motor.stop()
+            time.sleep(0.5)
             exit()
         
         # Move motor.
         print("Moving!")
-        servo1.ChangeDutyCycle(duty)
+        motor.move(duty)
         
     except ValueError:
         pass
