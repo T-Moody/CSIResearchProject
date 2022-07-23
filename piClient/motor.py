@@ -10,7 +10,7 @@ class Motor():
     # Initialize motor with pin number.
     def __init__(self, pin):
 
-        self.servo = Servo(17, min_pulse_width=0.5/1000, max_pulse_width=2.5/10)
+        self.servo = Servo(17, min_pulse_width=0.5/1000, max_pulse_width=2.5/1000, pin_factory=factory)
 
     # Process angle and move motor. Takes in number from -100 to 100.
     def move(self, angle):
