@@ -25,7 +25,7 @@ clientSocket, address = socketserver.accept()
 def main():
     
     # Get user input for testing.
-    userInput = input("Enter your value: ")
+    userInput = input("Enter value between -100 and 100: ")
 
     # Convert input to binary and send to client.
     clientSocket.send(bin(int(userInput)).encode())

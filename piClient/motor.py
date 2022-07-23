@@ -1,4 +1,8 @@
-import RPi.GPIO as GPIO
+from gpiozero import Servo
+from time import sleep
+from gpiozero.pins.pigpio import PiGPIOFactory
+
+factory = PiGPIOFactory()
 
 # Motor class
 class Motor():
@@ -6,23 +10,13 @@ class Motor():
     # Initialize motor with pin number.
     def __init__(self, pin):
 
-        GPIO.setwarnings(False)
+        self.servo = Servo(17, min_pulse_width=0.5/1000, max_pulse_width=2.5/10)
 
-        # Set GPIO numbering mode
-        GPIO.setmode(GPIO.BOARD)
-
-        # Set pin 11 as output, set servo1 as pin 11 as PWM
-        GPIO.setup(pin,GPIO.OUT)
-        self.servo1 = GPIO.PWM(pin,50)
-
-        # Start PWM running, but with value of 0 (off)
-        self.servo1.start(0)
-
-    # Process angle and move motor.
+    # Process angle and move motor. Takes in number from -100 to 100.
     def move(self, angle):
-        self.servo1.ChangeDutyCycle(angle)
-    
+        self.servo.value = float(angle) / 100
+
     # Stop the motor and clean up GPIO
     def stop(self):
-        self.servo1.stop()
-        GPIO.cleanup()
+        self.servo.value = 0.95
+        sleep(1)
