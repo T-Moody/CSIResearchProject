@@ -25,13 +25,13 @@ clientSocket, address = socketserver.accept()
 def main():
     
     # Get user input for testing.
-    userInput = input("Enter value between -100 and 100: ")
+    userInput = input("Enter value between -100 and 100 (-500 to quit): ")
 
     # Convert input to binary and send to client.
     clientSocket.send(bin(int(userInput)).encode())
 
     # Shutdown if value is 0.
-    if userInput == '0' :
+    if userInput == '-500' :
         clientSocket.close()
         exit()
 

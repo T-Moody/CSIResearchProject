@@ -26,7 +26,7 @@ def main():
         print("Duty: " + str(duty))
         
         # Shutdown if 0 is received from server.
-        if duty == 0 :
+        if duty == -500 :
             motor.stop()
             time.sleep(0.5)
             exit()
